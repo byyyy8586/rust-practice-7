@@ -1,0 +1,34 @@
+<!-- https://www.hackerrank.com/challenges/between-two-sets/problem -->
+
+fn get_total_x(a: &[i32], b: &[i32]) -> i32 {
+    let mut count = 0;
+    for x in 1..=100 {
+        if a.iter().all(|&num| x % num == 0) && b.iter().all(|&num| num % x == 0) {
+            count += 1;
+        }
+    }
+    count
+}
+
+fn main() {
+    use std::io;
+
+    let mut input = String::new();
+
+    io::stdin().read_line(&mut input).unwrap();
+    input.clear();
+
+    io::stdin().read_line(&mut input).unwrap();
+    let a: Vec<i32> = input.trim().split_whitespace()
+        .map(|x| x.parse().unwrap())
+        .collect();
+    input.clear();
+
+    io::stdin().read_line(&mut input).unwrap();
+    let b: Vec<i32> = input.trim().split_whitespace()
+        .map(|x| x.parse().unwrap())
+        .collect();
+
+    let result = get_total_x(&a, &b);
+    println!("{}", result);
+}
